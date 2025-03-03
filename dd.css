@@ -1,0 +1,346 @@
+/* 整体背景及字体 */
+body {
+  font-family: "Noto Sans SC", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  color: #333;
+}
+
+/* APP容器 */
+#app {
+  position: relative;
+  padding: 20px;
+  background: rgba(255,255,255,0.95);
+  max-width: 1200px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* 主题切换按钮 */
+.themeToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #2a5d84;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 1000;
+}
+
+.themeToggle:hover {
+  color: #ff6f61;
+}
+
+/* 主标题：28px，加粗，纯黑 */
+#mainTitle {
+  margin: 0;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  display: none;
+}
+
+/* 单元选择界面背景：背景图片与叠加透明色，玻璃拟态效果 */
+#unitSelection {
+  position: relative;
+  background: url('https://example.com/dance_background.jpg') no-repeat center center, rgba(255,255,255,0.3);
+  background-blend-mode: overlay;
+  background-size: cover;
+  text-align: center;
+  animation: zoomIn 20s infinite alternate;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#unitSelection::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.5);
+  z-index: 0;
+  border-radius: inherit;
+}
+
+#unitSelection > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 领域选择容器 */
+#fieldContainer {
+  text-align: center;
+}
+
+/* 顶栏采用Flex布局 */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 15px;
+  box-sizing: border-box;
+  background: #f0f8ff;
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* 返回按钮 */
+.backBtn {
+  background-color: #d1e0e0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.backBtn:hover {
+  background-color: #b0c4de;
+  transform: scale(1.05);
+}
+
+/* 导出按钮 */
+.exportBtn {
+  background-color: #d1e0e0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.exportBtn:hover {
+  background-color: #b0c4de;
+  transform: scale(1.05);
+}
+
+/* 居中标题，修改颜色为深灰 */
+.centerTitle {
+  text-align: center;
+  margin: 15px 0;
+  color: #333333;
+  font-family: 'Cinzel', serif;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* 单元卡及领域卡样式 */
+.unitCard, .fieldCard {
+  display: inline-block;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.unitCard:hover, .fieldCard:hover {
+  background-color: #e6f2ff;
+  transform: scale(1.03);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.fieldCard.cognitive {
+  background-color: #FF6F61;
+  color: #fff;
+  font-weight: bold;
+}
+
+.fieldCard.emotional {
+  background-color: #66CC66;
+  color: #fff;
+  font-weight: bold;
+}
+
+.fieldCard.motor {
+  background-color: #87CEEB;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 表格容器 */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  transition: box-shadow 0.3s;
+}
+
+th:hover, td:hover {
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+thead th, tbody td:first-child {
+  font-weight: bold;
+}
+
+thead th {
+  background-color: #f7f7f7;
+}
+
+select, textarea, input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+select:focus, textarea:focus, input:focus {
+  border-color: #2a5d84;
+}
+
+/* 使 textarea 支持双向拖动 */
+textarea {
+  resize: both;
+}
+
+/* 增大 Webkit 内核下的拖动角 */
+textarea::-webkit-resizer {
+  width: 24px;
+  height: 24px;
+}
+
+th.diagCell {
+  position: relative;
+  min-width: 80px;
+  min-height: 60px;
+  background-color: #f7f7f7;
+}
+
+.diagLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.diagBottomLeft {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  font-size: 12px;
+  color: #555;
+}
+
+.diagTopRight {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 12px;
+  color: #555;
+}
+
+/* 汇总块样式 */
+.summaryBlock {
+  margin-bottom: 1em;
+  line-height: 1.6;
+  text-align: left;
+  background: #fff;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.summaryBlock h3 {
+  margin-top: 0;
+  color: #2a5d84;
+}
+
+.summaryBlock ol {
+  margin-left: 20px;
+}
+
+#hiddenParser {
+  display: none;
+  visibility: hidden;
+}
+
+/* 页面转场动画 */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 移动端样式优化 */
+@media screen and (max-width: 600px) {
+  #app {
+    padding: 10px;
+    margin: 10px;
+  }
+  #mainTitle {
+    font-size: 24px;
+    padding: 15px;
+  }
+  .backBtn, .exportBtn {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+  .unitCard, .fieldCard {
+    padding: 15px;
+    margin: 8px;
+    font-size: 16px;
+  }
+  .topBar {
+    padding: 10px 15px;
+  }
+  th, td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* 自定义主题（用户可切换） */
+.custom-theme {
+  background: linear-gradient(135deg, #d4fc79, #96e6a1);
+}
+
+.custom-theme .backBtn, 
+.custom-theme .exportBtn {
+  background-color: #ffcc00;
+  color: #333;
+}
+
+/* 缩放动画 */
+@keyframes zoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
